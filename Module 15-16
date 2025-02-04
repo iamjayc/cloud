@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt user to enter a filename (simulated input)
+        System.out.print("Enter the image filename: ");
+        String filename = scanner.nextLine().trim().toLowerCase();
+
+        // Simulated Image Recognition
+        String detectedDisease = callImageRecognitionSystem(filename);
+
+        // Generate and display report
+        String report = generateReport(detectedDisease);
+        System.out.println(report);
+
+        // Close scanner to free resources
+        scanner.close();
+    }
+
+    // Simulated method for cloud-based image recognition
+    public static String callImageRecognitionSystem(String filename) {
+        System.out.println("\nAnalyzing image: " + filename);
+
+        // Simulated disease detection based on filename
+        if (filename.contains("rice")) {
+            return "Leaf Spot";
+        } else if (filename.contains("potato")) {
+            return "Rust Disease";
+        } else if (filename.contains("tomato")) {
+            return "Blight";
+        } else {
+            return "Unknown Disease";
+        }
+    }
+
+    // Method to generate a report based on detected disease
+    public static String generateReport(String disease) {
+        StringBuilder report = new StringBuilder();
+        report.append("\n===== Crop Disease Report =====\n");
+
+        switch (disease) {
+            case "Leaf Spot":
+                report.append("📌 Disease: Leaf Spot\n");
+                report.append("💊 Treatment: Apply fungicides containing copper or chlorothalonil.\n");
+                report.append("🌱 Prevention: Ensure proper plant spacing for air circulation.\n");
+                break;
+            case "Rust Disease":
+                report.append("📌 Disease: Rust Disease\n");
+                report.append("💊 Treatment: Use sulfur-based fungicides and remove infected leaves.\n");
+                report.append("🌱 Prevention: Avoid overhead watering and rotate crops.\n");
+                break;
+            case "Blight":
+                report.append("📌 Disease: Blight\n");
+                report.append("💊 Treatment: Use copper-based sprays and remove affected plants.\n");
+                report.append("🌱 Prevention: Avoid excess moisture and plant disease-resistant varieties.\n");
+                break;
+            default:
+                report.append("⚠ Disease not recognized. Consult an agricultural expert for diagnosis.\n");
+        }
+
+        report.append("================================\n");
+        return report.toString();
+    }
+}
