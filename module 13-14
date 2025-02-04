@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Task class to store task details
+class Task {
+    String name;
+
+    public Task(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}
+
+// TaskScheduler class
+class TaskScheduler {
+    private static List<Task> tasks = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    // Function to add tasks
+    public static void addTask() {
+        System.out.print("Enter task name: ");
+        String taskName = scanner.nextLine();
+        tasks.add(new Task(taskName));
+        System.out.println("Task added successfully!");
+    }
+
+    // Function to run the scheduler and display tasks
+    public static void runScheduler() {
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks scheduled.");
+        } else {
+            System.out.println("Scheduled Tasks:");
+            for (Task task : tasks) {
+                System.out.println("- " + task);
+            }
+        }
+    }
+
+    public static void showMenu() {
+        while (true) {
+            System.out.println("\nTask Scheduler Menu:");
+            System.out.println("1. Add Task");
+            System.out.println("2. View Scheduled Tasks");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    addTask();
+                    break;
+                case 2:
+                    runScheduler();
+                    break;
+                case 3:
+                    System.out.println("Exiting Task Scheduler.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
+
+// Main class with the entry point
+public class Main {
+    public static void main(String[] args) {
+        TaskScheduler.showMenu();
+    }
+}
